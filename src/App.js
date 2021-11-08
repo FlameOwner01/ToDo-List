@@ -7,32 +7,15 @@ const App = () =>{
 
   const [inputText, setInputText] = useState('');
   const [todos, setTodos] = useState([]);
-  const [status, setStatus] = useState('all');
-  const [filteredTodos, setFilteredTodos] = useState([]);
 
   useEffect(() =>{
     getLocalTodos();
   }, [])
 
   useEffect(() => {
-   filterHandler();
    saveLocalTodos();
- 
-  }, [todos, status])  
+  }, [todos])  
 
-  const filterHandler = () =>{
-    switch(status){
-      case "completed": 
-      setFilteredTodos(todos.filter((todo) => todo.completed === true))
-        break;
-      case "uncompleted":
-        setFilteredTodos(todos.filter((todo) => todo.completed === false))
-        break;
-      default: setFilteredTodos(todos);
-        break;
-    }
-    
-  };
 
   const saveLocalTodos = () =>{
       localStorage.setItem('todos', JSON.stringify(todos));
@@ -52,8 +35,8 @@ const App = () =>{
       <header>
         <h1>My Todo List</h1>
       </header>
-      <Lista setInputText = {setInputText} todos ={todos} setTodos ={setTodos} inputText = {inputText} setStatus= {setStatus}/>
-      <Items todos = {todos} setTodos = {setTodos} filteredTodos={filteredTodos}/>
+      <Lista setInputText = {setInputText} todos ={todos} setTodos ={setTodos} inputText = {inputText}/>
+      <Items todos = {todos} setTodos = {setTodos}/>
     </div>
   );
 }

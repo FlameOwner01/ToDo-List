@@ -4,7 +4,7 @@ import  { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 
-const Lista = ({setInputText, todos, setTodos, inputText, setStatus}) => {
+const Lista = ({setInputText, todos, setTodos, inputText}) => {
 
     const inputTextHandeler = (e) =>{ 
         setInputText(e.target.value);
@@ -16,26 +16,19 @@ const Lista = ({setInputText, todos, setTodos, inputText, setStatus}) => {
         setTodos([
             ...todos, {text: inputText, completed: false, id: Math.random() * 100}
         ]);
+        }else{
+            alert('Cannot submit empty field')
         }
         setInputText('');
     };
 
-    const statusHandler = (e) =>  {
-        setStatus(e.target.value)
-    }
+    
     return  (
         <form className= "bg">
             <input value = {inputText} type="text" className ="todo-input" onChange = {inputTextHandeler}/>
             <button onClick= {submitTodoHandler} className="todo-button" type="submit">
-            <FontAwesomeIcon icon ={faPlusSquare} className="fas fa-plus-square"></FontAwesomeIcon>
+            <FontAwesomeIcon icon ={faPlusSquare} className="fa-3x fa-plus-square "></FontAwesomeIcon>
             </button>
-            <div className= "select">
-                <select onChange={statusHandler} name ="todos" className ="filter-todo">
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
-                    <option value ="uncompleted">Uncompleted</option>
-                </select>
-            </div>
         </form>
     );
 };

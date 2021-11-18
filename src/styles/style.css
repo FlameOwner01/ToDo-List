@@ -132,3 +132,7 @@ select{
     cursor: pointer;
     pointer-events: none;
 }
+
+.block {
+    display: block;
+}
